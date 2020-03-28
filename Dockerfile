@@ -34,10 +34,11 @@ RUN curl -SsL https://github.com/boxboat/fixuid/releases/download/v0.4/fixuid-0.
     
 RUN cd /tmp && \
   curl -L --silent \
-  `curl --silent "https://api.github.com/repos/cdr/code-server/releases/latest" \
+  `curl --silent "https://api.github.com/repos/cdr/code-server/releases" \
     | grep '"browser_download_url":' \
     | grep "linux-x86_64" \
-    |  sed -E 's/.*"([^"]+)".*/\1/' \
+    | sed -E 's/.*"([^"]+)".*/\1/' \
+    | head -n1
   `| tar -xzf - && \
   mv code-server* /usr/local/lib/code-server && \
   ln -s /usr/local/lib/code-server/code-server /usr/local/bin/code-server
