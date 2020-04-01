@@ -1,8 +1,8 @@
 {
-  "name": "heroku-vscode",
-  "description": "Run visual code in browser (code-server)",
+  "name": "ace-stream",
+  "description": "Run ace-stream",
   "repository": "https://github.com/ivang7/heroku-vscode",
-  "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg",
-  "keywords": ["vscode", "docker", "code-server"],
+  "logo": "https://accounts.acestream.net/img/logo-cut.png",
+  "keywords": ["ace-stream", "torrent play"],
   "stack": "container"
 }
