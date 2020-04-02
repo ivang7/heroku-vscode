@@ -1,7 +1,7 @@
 {
   "name": "ace-stream",
   "description": "Run ace-stream",
-  "repository": "https://github.com/ivang7/heroku-vscode",
+  "repository": "https://github.com/ivang7/heroku-vscode/tree/ace-stream",
   "logo": "https://accounts.acestream.net/img/logo-cut.png",
   "keywords": ["ace-stream", "torrent play"],
   "stack": "container"
