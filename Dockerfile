@@ -40,12 +40,10 @@ RUN cd /tmp && \
     |  sed -E 's/.*"([^"]+)".*/\1/' \
   `| tar -xzf - && \
   mv code-server* /usr/local/lib/code-server && \
-  ln -s /usr/local/lib/code-server/code-server /usr/local/bin/code-server \
-  && mkdir -p /home/coder/.config/code-server \
-  && echo "bind-addr: 127.0.0.1:123\nauth: password\npassword: $PASSWORD\ncert: false" > /home/coder/.config/code-server/config.yaml
+  ln -s /usr/local/lib/code-server/code-server /usr/local/bin/code-server
 
 ENV PORT=8080
 EXPOSE 8080
 USER coder
 WORKDIR /home/coder
-CMD /usr/local/bin/code-server --host 0.0.0.0 --port $PORT .
+CMD sleep 5 && cat /home/coder/.config/code-server/config.yaml & /usr/local/bin/code-server --host 0.0.0.0 --port $PORT .
