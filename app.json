@@ -8,7 +8,7 @@
   "env": {
     "PASSWORD": {
       "description": "Password for access to code server.",
-      "generator": "secret"
+      "required": true
     }
   } 
 }
