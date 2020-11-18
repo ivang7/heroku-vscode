@@ -7,8 +7,7 @@
   "stack": "container",
   "env": {
     "PASSWORD": {
-      "description": "Password for access to code server.",
-      "required": true
+      "description": "Input password not using, please check actually password in console log"
     }
   } 
 }
