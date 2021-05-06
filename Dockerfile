@@ -8,12 +8,32 @@ RUN apt-get update \
     locales \
     man \
     nano \
+    zip \
+    unzip \
     git \
     procps \
     ssh \
     sudo \
     vim \
   && rm -rf /var/lib/apt/lists/*
+
+# install java and android sdk-------------- not finish, need change method install java
+RUN cd /root && \
+curl -s "https://get.sdkman.io" | bash && \
+bash -c 'source "/root/.sdkman/bin/sdkman-init.sh"' && \
+sdk install java 9.0.7-zulu && \
+sdk use java 9.0.7-zulu && \
+curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O && \
+unzip sdk-tools-linux-4333796.zip && \
+rm sdk-tools-linux-4333796.zip && \
+mkdir android-sdk && \
+mv tools android-sdk/tools && \
+export ANDROID_HOME=/root/android-sdk && \
+export PATH=$PATH:$ANDROID_HOME/tools/bin && \
+export PATH=$PATH:$ANDROID_HOME/platform-tools && \
+export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee' && \
+yes | sdkmanager --licenses && \
+sdkmanager "platform-tools" "platforms;android-29"
 
 # https://wiki.debian.org/Locale#Manually
 RUN sed -i "s/# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen \
