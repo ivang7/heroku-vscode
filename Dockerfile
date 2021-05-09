@@ -15,23 +15,29 @@ RUN apt-get update \
     ssh \
     sudo \
     vim \
+#for open-jdk8
+  && apt-get install -y software-properties-common \
+  && apt-add-repository 'deb http://security.debian.org/debian-security stretch/updates main' \
+  && apt-get update \
+  &&  apt-get install -y openjdk-8-jdk \
+#clean 
   && rm -rf /var/lib/apt/lists/*
 
 # install java and android sdk-------------- not finish, need change method install java
-RUN cd /root && \
-curl -s "https://get.sdkman.io" | bash && \
-bash -c 'source "/root/.sdkman/bin/sdkman-init.sh"' && \
-sdk install java 9.0.7-zulu && \
-sdk use java 9.0.7-zulu && \
+RUN mkdir /home/coder && cd /home/coder && \
+#curl -s "https://get.sdkman.io" | bash && \
+#bash -c 'source "/root/.sdkman/bin/sdkman-init.sh"' && \
+#bash -c 'sdk install java 9.0.7-zulu' && \
+#bash -c 'sdk use java 9.0.7-zulu' && \
 curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O && \
 unzip sdk-tools-linux-4333796.zip && \
 rm sdk-tools-linux-4333796.zip && \
 mkdir android-sdk && \
 mv tools android-sdk/tools && \
-export ANDROID_HOME=/root/android-sdk && \
+export ANDROID_HOME=/home/coder/android-sdk && \
 export PATH=$PATH:$ANDROID_HOME/tools/bin && \
 export PATH=$PATH:$ANDROID_HOME/platform-tools && \
-export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee' && \
+#export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee' && \ #unset JAVA_OPTS
 yes | sdkmanager --licenses && \
 sdkmanager "platform-tools" "platforms;android-29"
 
